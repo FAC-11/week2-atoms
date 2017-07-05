@@ -17,25 +17,13 @@ var todoFunctions = {
   })(),
 
   addTodo: function(todos, newTodo) {
-    console.log(todos);
 
-    var todosArr = todos.map(function(position){
-        return position;
+    return todos.concat({
+      description: newTodo.description,
+      id:todoFunctions.generateId(),
+      done:false
     });
-    var newobj = Object.assign({},newTodo);
 
-    newobj.id = todoFunctions.generateId;
-    newobj.description = '';
-    newobj.markId = false;
-    todosArr.push(newobj);
-    return todosArr;
-
-
-    // var newToDoArr = newTodo.map(function(position){
-    //     return position;
-    // });
-
-    //return todosArr.concat(newToDoArr);
 
     // should leave the input argument todos unchanged
     // returns a new array, it should contain todos with the newTodo added to the end.
@@ -49,9 +37,24 @@ var todoFunctions = {
     return array;
   },
   markTodo: function(todos, idToMark) {
-    var newTodos = todos.slice();
-    newTodos[idToMark].markId = true;
+    var newTodos = clone(todos);
+
+    // go thru array of todo
+    return newTodos.map(function(newTodo){
+      // and find the todo that has the given id
+      if(newTodo.id === idToMark){
+        // and toggle the done property of the todo
+        return Object.assign({}, newTodo, {done: !newTodo.done})
+
+      }else{
+        return newTodo
+
+      }
+    })
+
     return newTodos;
+    // key: the name of the object key
+    // index: the ordinal position of the key within the object
     // should leave the input argument todos unchanged
     // in the new todo array, all elements will remain unchanged except the one with id: idToMark
     // this element will have its done value toggled
@@ -62,8 +65,14 @@ var todoFunctions = {
     // should leave the input arguement todos unchanged
     // sortFunction will have same signature as the sort function in array.sort
     // hint: array.slice, array.sort
+    return todos.slice().sort(sortFunction)
   },
 };
 
+function clone(original) {
+  var stringfied = JSON.stringify(original);
+  var clone = JSON.parse(stringfied);
+  return clone;
+}
 
 module.exports=todoFunctions;
