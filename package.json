@@ -1,0 +1,24 @@
+{
+  "name": "week2-atoms",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node skeleton/test.js | tap-spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FAC-11/week2-atoms.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FAC-11/week2-atoms/issues"
+  },
+  "homepage": "https://github.com/FAC-11/week2-atoms#readme",
+  "devDependencies": {
+    "tap-spec": "^4.1.1",
+    "tape": "^4.7.0"
+  },
+  "dependencies": {}
+}
