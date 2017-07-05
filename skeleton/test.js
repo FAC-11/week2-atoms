@@ -8,9 +8,9 @@ var logic = require('./logic.js');
 
 // tests for deleteTodo
 test('deleteTodo should return an array', function(t) {
-  var actual = Array.isArray(logic.deleteTodo());
+  var actual = Array.isArray(logic.deleteTodo([5], [5]));
   var expected = true;
-  t.equal(actual, expected, 'should return an array');
+  t.deepEqual(actual, expected, 'should return an array');
   t.end();
 });
 
@@ -18,6 +18,6 @@ test('deleteTodo should return an array', function(t) {
 test('new array should not contain todo with id of idToDelete', function(t) {
   var actual = logic.deleteTodo([{id: 1, txt: 'go for run'}, {id: 2, txt: 'drink water'}], 2);
   var expected = [{id: 1, txt: 'go for run'}];
-  t.equal(actual, expected, 'should delete object with id idToDelete');
+  t.deepEqual(actual, expected, 'should delete object with id idToDelete');
   t.end();
 });
