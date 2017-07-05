@@ -21,6 +21,7 @@ var todoFunctions = {
     // hint: array.concat
   },
   deleteTodo: function(todos, idToDelete) {
+    return [];
     // should leave the input argument todos unchanged
     // return a new array, this should not contain any todo with an id of idToDelete
     // hint: array.filter

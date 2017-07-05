@@ -8,8 +8,8 @@ var logic = require('./logic.js');
 
 // tests for eleteTodo
 test('deleteTodo should return an array', function(t) {
-  var actual = typeof(logic.deleteTodo());
-  var expected = 'Array';
+  var actual = Array.isArray(logic.deleteTodo());
+  var expected = true;
   t.equal(actual, expected, 'should return an array');
   t.end();
 });
