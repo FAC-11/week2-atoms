@@ -43,7 +43,6 @@ var todoFunctions = {
     var array = todos.filter(function(x) {
       return x.id !== idToDelete;
     })
-
     return array;
   },
   markTodo: function(todos, idToMark) {
