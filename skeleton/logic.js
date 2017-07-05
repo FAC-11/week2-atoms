@@ -40,9 +40,11 @@ var todoFunctions = {
     // hint: array.concat
   },
   deleteTodo: function(todos, idToDelete) {
-    // should leave the input argument todos unchanged
-    // return a new array, this should not contain any todo with an id of idToDelete
-    // hint: array.filter
+    var array = todos.filter(function(x) {
+      return x.id !== idToDelete;
+    })
+
+    return array;
   },
   markTodo: function(todos, idToMark) {
     // should leave the input argument todos unchanged
@@ -57,5 +59,6 @@ var todoFunctions = {
     // hint: array.slice, array.sort
   },
 };
+
 
 module.exports=todoFunctions;
