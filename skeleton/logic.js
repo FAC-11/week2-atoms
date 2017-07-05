@@ -38,3 +38,5 @@ var todoFunctions = {
     // hint: array.slice, array.sort
   },
 };
+
+module.exports = todoFunctions;
