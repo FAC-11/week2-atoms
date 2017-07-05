@@ -15,6 +15,7 @@ var todoFunctions = {
 
     return incrementCounter;
   })(),
+
   addTodo: function(todos, newTodo) {
     console.log(todos);
 
@@ -24,6 +25,8 @@ var todoFunctions = {
     var newobj = Object.assign({},newTodo);
 
     newobj.id = todoFunctions.generateId;
+    newobj.description = '';
+    newobj.markId = false;
     todosArr.push(newobj);
     return todosArr;
 
@@ -46,6 +49,9 @@ var todoFunctions = {
     return array;
   },
   markTodo: function(todos, idToMark) {
+    var newTodos = todos.slice();
+    newTodos[idToMark].markId = true;
+    return newTodos;
     // should leave the input argument todos unchanged
     // in the new todo array, all elements will remain unchanged except the one with id: idToMark
     // this element will have its done value toggled
