@@ -77,6 +77,15 @@ test('should leave the input argument todos unchanged', function(t) {
 });
 
   // please use test('description here', function(t) { etc format for consistency
+
+test('logic.addTodo should add a todo to the list', function(t) {
+    var todos = [{
+      description: 'make tea'
+    }];
+    var newTodo = {
+      description: 'make eggs'
+    };
+
   var updatedTodos = logic.addTodo(todos, newTodo);
 
   var expected = [{
