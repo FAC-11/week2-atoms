@@ -1,0 +1,105 @@
+@charset "UTF-8";
+body {
+    background: #edf0f1;
+    padding: 140px 0 0 0;
+}
+body,input,button{
+    font-family: 'Roboto',sans-serif;
+}
+/*header styles*/
+header{
+    width: 100%;
+    height: 130px;
+    position: fixed;
+    top:0;
+    left:0;
+    z-index:5 ;
+}
+.header-name{
+    height:50px;
+    background: #4b4e6d;
+    box-shadow: 0px 2px 4px rgba(44,62,80,0.15);
+}
+.header-add{
+
+    height:60px;
+    background: #27c19b;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px ;
+    box-shadow: 0px 2px 4px rgba(44,62,80,0.15);
+    padding:10px;
+}
+
+.header-add input{
+    width: 100%;
+    height: 50px;
+    color: #fff;
+    float:left;
+    font-size: 18px;
+    text-indent: 15px;
+    font-weight: 400;
+    padding: 0 60px 0 0;
+
+    background: rgba(255,255,255,0.2);
+    border-radius: 5px;
+    border:0px;
+    box-shadow: none;
+    outline:none;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    box-sizing: border-box;
+}
+
+.header-add input::-webkit-input-placeholder{
+    color: rgba(225,225,225,0.8);
+}
+
+header input:-moz-input-placeholder {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+header input::-moz-input-placeholder {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+header input:-ms-input-placeholder {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.header-add  button {
+    width: 50px;
+    height: 50px;
+
+    position:absolute;
+    top:60px;
+    right:10px;
+    z-index:2;
+    float:left;
+
+    border-radius: 25px;
+    background: #fff;
+    border: 0px;
+    box-shadow: none;
+    outline: none;
+    cursor: pointer;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.header-add button svg{
+    width:20px;
+    height: 20px;
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    margin: -10px 0 0 -10px ;
+
+
+}
+
+header button svg .fill {
+    fill: #4b4e6d;;
+}
