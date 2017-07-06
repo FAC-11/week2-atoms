@@ -3,17 +3,45 @@ var logic = require('./logic.js');
 
 /**** TESTS FOR DELETETODO ****/
 test('deleteTodo should return an array', function(t) {
-  var actual = Array.isArray(logic.deleteTodo([5], [5]));
+  var actual = Array.isArray(logic.deleteTodo([], 1));
   var expected = true;
   t.deepEqual(actual, expected, 'should return an array');
   t.end();
 });
 
-// new array returned should not contain todo with id of idToDelete
-test('new array returned should not contain todo with id of idToDelete', function(t) {
+// should work for 1 item
+test('should work for 1 item', function(t) {
   var actual = logic.deleteTodo([{
     id: 1,
-    description: "go for run", done: false
+    description: "go for run",
+    done: false
+  }], 1);
+  var expected = [];
+  t.deepEqual(actual, expected, 'should work for 1 item');
+  t.end();
+});
+// should work for 1 item when idToDelete input argument doesn't match
+test("should work for 1 item when idToDelete input argument doesn't match", function(t) {
+  var actual = logic.deleteTodo([{
+    id: 1,
+    description: "go for run",
+    done: false
+  }], 2);
+  var expected = [{
+    id: 1,
+    description: "go for run",
+    done: false
+  }]
+  t.deepEqual(actual, expected, "should work for 1 item when idToDelete input argument doesn't match");
+  t.end();
+});
+
+// Should return a new array with all the items that don't match the idToDelete input argument
+test("Should return a new array with all the items that don't match the idToDelete input argument", function(t) {
+  var actual = logic.deleteTodo([{
+    id: 1,
+    description: "go for run",
+    done: false
   }, {
     id: 2,
     description: "drink water",
@@ -24,21 +52,33 @@ test('new array returned should not contain todo with id of idToDelete', functio
     description: "go for run",
     done: false
   }];
-  t.deepEqual(actual, expected, 'should delete object with id idToDelete');
+  t.deepEqual(actual, expected, "Should return a new array with all the items that don't match the idToDelete input argument");
   t.end();
 });
 
-// should leave the input argument todos unchanged
-test('should leave the input argument todos unchanged', function(t) {
+// Should return an empty array if all items match the input argument idToDelete
+test("Should return an empty array if all items match the imput argument idToDelete", function(t) {
+  var actual = logic.deleteTodo([{
+    id: 1,
+    description: "go for run",
+    done: false
+  }, ], 1);
+  var expected = [];
+  t.deepEqual(actual, expected, 'Should return an empty array if all items match the imput argument idToDelete');
+  t.end();
+});
+
+// should leave the input argument array todos unchanged
+test('should leave the input argument array todos unchanged', function(t) {
   var todoarray = [{
-  id: 1,
-  description: "go for run",
-  done: false
-}, {
-  id: 4,
-  description: "drink water",
-  done: false
-}];
+    id: 1,
+    description: "go for run",
+    done: false
+  }, {
+    id: 4,
+    description: "drink water",
+    done: false
+  }];
   // run our function
   logic.deleteTodo(todoarray, 4);
   var actual = todoarray;
@@ -52,7 +92,7 @@ test('should leave the input argument todos unchanged', function(t) {
     done: false
   }];
   // check if todoarray has changed
-  t.deepEqual(actual, expected, 'should leave the input argument todos unchanged');
+  t.deepEqual(actual, expected, "should leave the input argument array todos unchanged");
   t.end();
 });
 
@@ -68,23 +108,38 @@ test('should leave the input argument todos unchanged', function(t) {
 
 // should leave the input argument todos unchanged
 test('should leave the input argument todos unchanged', function(t) {
-  var todoarray = [{id: 1, description: "go for run", done: false}, {id: 4, description: "drink water", done: false}];
+  var todoarray = [{
+    id: 1,
+    description: "go for run",
+    done: false
+  }, {
+    id: 4,
+    description: "drink water",
+    done: false
+  }];
   logic.deleteTodo(todoarray, 4);
   var actual = todoarray;
-  var expected = [{id: 1, description: "go for run", done: false}, {id: 4, description: "drink water", done: false}];
+  var expected = [{
+    id: 1,
+    description: "go for run",
+    done: false
+  }, {
+    id: 4,
+    description: "drink water",
+    done: false
+  }];
   t.deepEqual(actual, expected, 'should leave the input argument todos unchanged');
   t.end();
 });
 
-  // please use test('description here', function(t) { etc format for consistency
-
-test('logic.addTodo should add a todo to the list', function(t) {
-    var todos = [{
-      description: 'make tea'
-    }];
-    var newTodo = {
-      description: 'make eggs'
-    };
+// Should return an array with the input argument todo added to the list
+test("Should return an array with the input argument todo added to the list", function(t) {
+  var todos = [{
+    description: 'make tea'
+  }];
+  var newTodo = {
+    description: 'make eggs'
+  };
 
   var updatedTodos = logic.addTodo(todos, newTodo);
 
@@ -168,74 +223,108 @@ test('logic.markTodo should toggle the done property on the todo with' +
 
     t.end();
   })
+/**** TESTS FOR SORTTODO ****/
 
-  //sort
-  test('sortTodos should return an array', function(t) {
-    var todos = [{
+//Should return an array
+test("should return an array", function(t) {
+  var todos = [{
       id: 1,
       description: 'make eggs',
       done: false
     },
 
-    { id: 2,
+    {
+      id: 2,
       description: 'make omelette',
       done: false
-    }];
+    }
+  ];
 
-    var actual = Array.isArray(logic.sortTodos(todos));
-    var expected = true;
-    t.deepEqual(actual, expected, 'should return an array');
-    t.end();
-  });
+  var actual = Array.isArray(logic.sortTodos(todos));
+  var expected = true;
+  t.deepEqual(actual, expected, 'should return an array');
+  t.end();
+});
 
-  test('sortTodos should return a new array with the done property set as true', function(t) {
-    var todos = [{
+//Should return an array with the correct items
+test("should return a new array of only items with done property set as true", function(t) {
+  var todos = [{
       id: 1,
       description: 'make eggs',
       done: false
     },
 
-    { id: 2,
+    {
+      id: 2,
       description: 'make omelette',
       done: true,
-    }];
+    }
+  ];
 
-    var actual = logic.sortTodos(todos);
-    var expected = [
-    { id: 2,
-      description: 'make omelette',
-      done: true
-    }];
+  var actual = logic.sortTodos(todos, true);
+  var expected = [{
+    id: 2,
+    description: 'make omelette',
+    done: true
+  }];
 
-    t.deepEqual(actual, expected, 'should return a new array with the done property set as true');
-    t.end();
-  });
+  t.deepEqual(actual, expected, "should return a new array of only items with done property set as true");
+  t.end();
+});
 
-  test('input argument should remain unchanged', function(t) {
-    var todos = [{
+//should not change input arguments
+test('input argument should remain unchanged', function(t) {
+  var todos = [{
       id: 1,
       description: 'make eggs',
       done: false
     },
 
-    { id: 2,
+    {
+      id: 2,
       description: 'make omelette',
       done: true,
-    }];
+    }
+  ];
 
-    logic.sortTodos(todos);
-    var actual = todos ;
-    var expected = [{
+  logic.sortTodos(todos);
+  var actual = todos;
+  var expected = [{
       id: 1,
       description: 'make eggs',
       done: false
     },
 
-    { id: 2,
+    {
+      id: 2,
       description: 'make omelette',
       done: true,
-    }];
+    }
+  ];
 
-    t.deepEqual(actual, expected, 'input argument should remain unchanged');
-    t.end();
-  });
+  t.deepEqual(actual, expected, 'input argument should remain unchanged');
+  t.end();
+});
+
+//Should return an empty array when none of the items match the input argument
+test("should return an empty array if there are no items that match the input argument", function(t) {
+  var todos = [{
+      id: 1,
+      description: 'make eggs',
+      done: false
+    },
+
+    {
+      id: 2,
+      description: 'make omelette',
+      done: false,
+    }
+  ];
+
+  var actual = logic.sortTodos(todos, true);
+  var expected = [];
+
+
+  t.deepEqual(actual, expected, "should return an empty array if there are no items that match the input argument");
+  t.end();
+});
