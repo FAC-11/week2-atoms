@@ -36,6 +36,7 @@ var todoFunctions = {
     })
     return array;
   },
+  
   markTodo: function(todos, idToMark) {
     var newTodos = clone(todos);
 
