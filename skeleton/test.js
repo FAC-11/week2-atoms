@@ -13,7 +13,7 @@ test('deleteTodo should return an array', function(t) {
 test('new array returned should not contain todo with id of idToDelete', function(t) {
   var actual = logic.deleteTodo([{
     id: 1,
-    description: "go for run"
+    description: "go for run", done: false
   }, {
     id: 2,
     description: "drink water",
