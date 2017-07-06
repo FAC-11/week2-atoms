@@ -36,7 +36,7 @@ var todoFunctions = {
     })
     return array;
   },
-  
+
   markTodo: function(todos, idToMark) {
     var newTodos = clone(todos);
 
@@ -61,16 +61,19 @@ var todoFunctions = {
     // this element will have its done value toggled
     // hint: array.map
   },
-  sortTodos: function(todos, sortFunction) {
+  sortTodos: function(todos, sortFunction){
+    var array = todos.filter(function(x) {
+      return x.done == true;
+    });
+    return array;
+  }
     // stretch goal! Do this last
     // should leave the input arguement todos unchanged
     // sortFunction will have same signature as the sort function in array.sort
     // hint: array.slice, array.sort
-    return todos.slice().sort(sortFunction)
-  },
-};
 
-function clone(original) {
+}
+function clone(original){
   var stringfied = JSON.stringify(original);
   var clone = JSON.parse(stringfied);
   return clone;
