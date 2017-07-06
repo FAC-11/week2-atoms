@@ -168,3 +168,74 @@ test('logic.markTodo should toggle the done property on the todo with' +
 
     t.end();
   })
+
+  //sort
+  test('sortTodos should return an array', function(t) {
+    var todos = [{
+      id: 1,
+      description: 'make eggs',
+      done: false
+    },
+
+    { id: 2,
+      description: 'make omelette',
+      done: false
+    }];
+
+    var actual = Array.isArray(logic.sortTodos(todos));
+    var expected = true;
+    t.deepEqual(actual, expected, 'should return an array');
+    t.end();
+  });
+
+  test('sortTodos should return a new array with the done property set as true', function(t) {
+    var todos = [{
+      id: 1,
+      description: 'make eggs',
+      done: false
+    },
+
+    { id: 2,
+      description: 'make omelette',
+      done: true,
+    }];
+
+    var actual = logic.sortTodos(todos);
+    var expected = [
+    { id: 2,
+      description: 'make omelette',
+      done: true
+    }];
+
+    t.deepEqual(actual, expected, 'should return a new array with the done property set as true');
+    t.end();
+  });
+
+  test('input argument should remain unchanged', function(t) {
+    var todos = [{
+      id: 1,
+      description: 'make eggs',
+      done: false
+    },
+
+    { id: 2,
+      description: 'make omelette',
+      done: true,
+    }];
+
+    logic.sortTodos(todos);
+    var actual = todos ;
+    var expected = [{
+      id: 1,
+      description: 'make eggs',
+      done: false
+    },
+
+    { id: 2,
+      description: 'make omelette',
+      done: true,
+    }];
+
+    t.deepEqual(actual, expected, 'input argument should remain unchanged');
+    t.end();
+  });
