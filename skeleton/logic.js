@@ -38,10 +38,10 @@ var todoFunctions = {
   },
 
   markTodo: function(todos, idToMark) {
-    var newTodos = clone(todos);
+    var copyTodos = clone(todos);
 
     // go thru array of todo
-    return newTodos.map(function(newTodo){
+    return copyTodos.map(function(newTodo){
       // and find the todo that has the given id
       if(newTodo.id === idToMark){
         // and toggle the done property of the todo
@@ -53,7 +53,6 @@ var todoFunctions = {
       }
     })
 
-    return newTodos;
     // key: the name of the object key
     // index: the ordinal position of the key within the object
     // should leave the input argument todos unchanged
@@ -61,11 +60,11 @@ var todoFunctions = {
     // this element will have its done value toggled
     // hint: array.map
   },
-  sortTodos: function(todos, sortFunction){
+  sortTodos: function(todos, condition ){
     var array = todos.filter(function(x) {
-      return x.done == true;
+      return x.done == condition;
     });
-    return array;
+      return array;
   }
     // stretch goal! Do this last
     // should leave the input arguement todos unchanged
