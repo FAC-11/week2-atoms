@@ -1,8 +1,6 @@
 var test = require('tape');
 var logic = require('./logic.js');
 
-var todoarray = [{id: 1, description: "go for run", done: false}, {id: 4, description: "drink water", done: false}];
-
 // tests for deleteTodo
 test('deleteTodo should return an array', function(t) {
   var actual = Array.isArray(logic.deleteTodo([5], [5]));
@@ -13,7 +11,7 @@ test('deleteTodo should return an array', function(t) {
 
 // return a new array, this should not contain any todo with an id of idToDelete
 test('new array should not contain todo with id of idToDelete', function(t) {
-  var actual = logic.deleteTodo([{id: 1, description: "go for run"}, {id: 2, description: "drink water", done: false}], 2);
+  var actual = logic.deleteTodo([{id: 1, description: "go for run", done: false}, {id: 2, description: "drink water", done: false}], 2);
   var expected = [{id: 1, description: "go for run", done: false}];
   t.deepEqual(actual, expected, 'should delete object with id idToDelete');
   t.end();
@@ -21,6 +19,7 @@ test('new array should not contain todo with id of idToDelete', function(t) {
 
 // should leave the input argument todos unchanged
 test('should leave the input argument todos unchanged', function(t) {
+  var todoarray = [{id: 1, description: "go for run", done: false}, {id: 4, description: "drink water", done: false}];
   logic.deleteTodo(todoarray, 4);
   var actual = todoarray;
   var expected = [{id: 1, description: "go for run", done: false}, {id: 4, description: "drink water", done: false}];
