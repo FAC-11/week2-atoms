@@ -80,7 +80,7 @@
         // hint: todoFunctions.addTodo
         var newState = todoFunctions.addTodo(state,newtodoobj);// ?? change this!
         update(newState);
-        console.log(newState)
+
     });
 
 
