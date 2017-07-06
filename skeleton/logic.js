@@ -62,7 +62,7 @@ var todoFunctions = {
   },
   sortTodos: function(todos, condition ){
     var array = todos.filter(function(x) {
-      return x.done == condition;
+      return x.done === condition;
     });
       return array;
   }
