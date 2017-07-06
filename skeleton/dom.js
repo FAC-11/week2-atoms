@@ -8,6 +8,8 @@
 (function() {
     // This is the dom node where we will keep our todo
     var container = document.getElementById('todo-container');
+
+    var completedContainer = document.getElementById('completed-container');
     //var addTodoForm = document.getElementById('add');
 
     var state = [
@@ -23,7 +25,7 @@
 
         // add span holding description
         var spanText = document.createElement('span');
-        spanText.innerText = todo.description;
+        spanText.textContent = todo.description;
         todoNode.appendChild(spanText);
 
         // buttons div tag to hold two buttons
@@ -92,14 +94,28 @@
 
     // you do not need to change this function
     var renderState = function(state) {
+
+        var taskLeft = todoFunctions.sortTodos(state.slice(), false);
+        var taskCompleted = todoFunctions.sortTodos(state.slice(), true);
+
         var todoListNode = document.createElement('ul');
 
-        state.forEach(function(todo) {
+        taskLeft.forEach(function(todo) {
             todoListNode.appendChild(createTodoNode(todo));
         });
 
         // you may want to add a class for css
         container.replaceChild(todoListNode, container.firstChild);
+
+        var todoListNode = document.createElement('ul');
+
+        taskCompleted.forEach(function(todo) {
+            todoListNode.appendChild(createTodoNode(todo));
+        });
+
+        // you may want to add a class for css
+        completedContainer.replaceChild(todoListNode, completedContainer.firstChild);
+
     };
 
     if (container) renderState(state);
