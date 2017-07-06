@@ -16,14 +16,21 @@
   var createTodoNode = function(todo) {
     var todoNode = document.createElement('li');
     // you will need to use addEventListener
-    todonode.addEventListener('click', function(event) {
 
+    todoNode.addEventListener('click', function(event){
+      var newState = todoFunctions.markTodo(state, todo.id);
+      update(newState);
     })
 
+
     // add span holding description
+   var description = document.createElement('span');
+   todoNode.appendChild(description);
+    description.textContent = todo.description;
 
     // this adds the delete button
     var deleteButtonNode = document.createElement('button');
+    deleteuttonNode.innerHTML = "remove";
     deleteButtonNode.addEventListener('click', function(event) {
       var newState = todoFunctions.deleteTodo(state, todo.id);
       update(newState);
@@ -44,7 +51,7 @@
       // what does event.preventDefault do?
       // what is inside event.target?
 
-      var description = '?'; // event.target ....
+      var description =  // event.target ....
 
       // hint: todoFunctions.addTodo
       var newState = []; // ?? change this!
