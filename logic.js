@@ -65,11 +65,36 @@ var todoFunctions = {
       return x.done === condition;
     });
       return array;
-  }
+  },
     // stretch goal! Do this last
     // should leave the input arguement todos unchanged
     // sortFunction will have same signature as the sort function in array.sort
     // hint: array.slice, array.sort
+
+    // New Code from Rebeca
+    toggleEditing: function(todos, id){
+        var newTodos = todos.map(function(todo){
+            if(todo.id === id){
+                return Object.assign({}, todo, {beingEdited: !todo.beingEdited})
+            } else{
+                return Object.assign({}, todo, {beingEdited: false})
+            }
+        });
+        return newTodos;
+    },
+
+    editTodo: function(todos, id, description){
+        var newTodos = todos.map(function(todo){
+            if(todo.id === id){
+                return Object.assign({}, todo, {description: description})
+            } else{
+                return todo;
+            }
+        });
+        return newTodos;
+    }
+
+
 
 }
 function clone(original){

@@ -328,3 +328,253 @@ test("should return an empty array if there are no items that match the input ar
   t.deepEqual(actual, expected, "should return an empty array if there are no items that match the input argument");
   t.end();
 });
+
+// Edit tests from Rebecca
+
+test('logic.toggleEditing should toggle the beingEdited property on the todo' +
+    ' with the given id and set the beingEdited property on all on others todos' +
+    'to false',
+    function(t) {
+
+        var todos = [{
+            id: 1,
+            description: 'make eggs',
+            done: false,
+            beingEdited: false
+        },
+            {
+                id: 2,
+                description: 'make omelette',
+                done: true,
+                beingEdited: false
+            },
+            {
+                id: 3,
+                description: 'make coffee',
+                done: true,
+                beingEdited: true
+            }
+        ];
+
+        var actual = logic.toggleEditing(todos, 2)
+
+        var expected = [{
+            id: 1,
+            description: 'make eggs',
+            done: false,
+            beingEdited: false
+        },
+            {
+                id: 2,
+                description: 'make omelette',
+                done: true,
+                beingEdited: true
+            },
+            {
+                id: 3,
+                description: 'make coffee',
+                done: true,
+                beingEdited: false
+            }
+        ];
+
+        t.deepEqual(actual, expected,
+            'The todo with id 2 should be toggled to true and all others' +
+            'should be set to false')
+
+        actual = logic.toggleEditing(todos, 3)
+
+        expected = [{
+            id: 1,
+            description: 'make eggs',
+            done: false,
+            beingEdited: false
+        },
+            {
+                id: 2,
+                description: 'make omelette',
+                done: true,
+                beingEdited: false
+            },
+            {
+                id: 3,
+                description: 'make coffee',
+                done: true,
+                beingEdited: false
+            }
+        ];
+
+        t.deepEqual(actual, expected,
+            'The todo with id 3 should be toggled to false and all others' +
+            'should be set to false');
+
+        t.end();
+    })
+//test for editTask function
+test('logic.editTodo should set the description for the todo with the given id',
+    function(t) {
+
+        var todos = [{
+            id: 1,
+            description: 'make eggs',
+            done: false
+        },
+            {
+                id: 2,
+                description: 'make omelette',
+                done: true,
+            },
+            {
+                id: 3,
+                description: 'make coffee',
+                done: true,
+            }
+        ];
+
+        var actual = logic.editTodo(todos, 2, 'build a website');
+        var expected = [{
+            id: 1,
+            description: 'make eggs',
+            done: false
+        },
+            {
+                id: 2,
+                description: 'build a website',
+                done: true,
+            },
+            {
+                id: 3,
+                description: 'make coffee',
+                done: true,
+            }
+        ];
+
+        t.deepEqual(actual, expected,
+            'The description of the todo with id 2 should be set');
+
+        t.end();
+    })
+
+
+// DO NOT DELETE
+// Shows in initial thinking process for the tests for this task
+// Shows how we refactored the codes and the test.
+
+//
+// // addToDo function tests
+// test('See if addToDo returns an array', function(t) {
+//   var actual = Array.isArray(logic.addTodo([], []));
+//   var expected = true;
+//   t.equal(actual, expected, "addToDo should return an array");
+//   t.end();
+// });
+//
+// test('Check if the toDo array has the newToDo array', function(t) {
+//   var actual = logic.addTodo([{
+//       done: false,
+//       description: "go for run"
+//     },
+//     {
+//       id: 2,
+//       description: "drink water",
+//       done: false
+//     }
+//   ], {
+//     id: 1
+//   }).length;
+//   var expected = 4;
+//   t.deepEqual(actual, expected, "length should have increased by 1, from 3 to 4");
+//   t.end();
+// });
+//
+// test('check that the last added value is an object in the array', function(t) {
+//   var todo = [{
+//     done: true,
+//     description: "smash avocados"
+//   }];
+//   var newtodo = {
+//     id: 1
+//   };
+//   var actual = typeof logic.addTodo(todo, newtodo)[logic.addTodo(todo, newtodo).length - 1];
+//   var expected = 'object';
+//
+//   t.deepEqual(actual, expected, "array should have an object as its last element");
+//   t.end();
+// });
+//
+// test('Check if last element has a key of \'id\'', function(t) {
+//   var todo = [{
+//     done: true,
+//     description: "smash avocados"
+//   }];
+//   var newtodo = {
+//     id: 1
+//   };
+//   var actual = "id" in logic.addTodo(todo, newtodo)[logic.addTodo(todo, newtodo).length - 1];
+//   var expected = true;
+//   t.equal(actual, expected, "the array has an key of id");
+//   t.end();
+//
+// });
+//
+// test('Check if last element has a description', function(t) {
+//   var todo = [{
+//     done: true,
+//     description: "smash avocados"
+//   }];
+//   var newtodo = {
+//     id: 1
+//   };
+//   var actual = "description" in logic.addTodo(todo, newtodo)[logic.addTodo(todo, newtodo).length - 1];
+//   var expected = true;
+//   t.equal(actual, expected, "the array will have a description");
+//   t.end();
+//
+// });
+// //this is wrong
+// test('Check if last element has a idToMark', function(t) {
+//   var todo = [{
+//     id: 1,
+//     description: "peel potatos",
+//     done: false,
+//   }];
+//   var newtodo = {
+//     id: 2,
+//     description: "smash avocados",
+//     done: false,
+//   };
+//   var actual = logic.addTodo(todo, newtodo)[logic.addTodo(todo, newtodo).length - 1].idToMark;
+//   var expected = false;
+//   t.equal(actual, expected, "the array will not have a markId");
+//   t.end();
+//
+// });
+//
+//
+// //markToDo function
+// test('function should return an array of Objects', function(t) {
+//   var todo = [{
+//     2: 'two',
+//     3: 'three'
+//   }];
+//   var newTodo = 0;
+//   var actual = typeof logic.markTodo(todo, newTodo);
+//   var expected = 'object';
+//   t.deepEqual(actual, expected, "it should be an object'");
+//   t.end();
+// })
+//
+//
+// test('check if markId has become true', function(t) {
+//   var todo = [{
+//     one: "one",
+//     name: "two",
+//     markId: false
+//   }];
+//
+//   var newVar = 0;
+//   var actual = logic.markTodo(todo, newVar)[newVar].idToMark;
+//   var expected = true;
+//   t.equal(actual, expected, "the array will have a idToMark 'true'");
+//   t.end();
+// })
