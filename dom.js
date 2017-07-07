@@ -13,15 +13,25 @@
 
     var completedContainer = document.getElementById('completed-container');
     //var addTodoForm = document.getElementById('add');
-    //var state = JSON.parse(localStorage.getItem("state"));
 
-    var state = [
-        { id: -3, description: 'first todo', done:false },
-         { id: -2, description: 'second todo', done:false },
-         { id: -1, description: 'third todo', done:false },
-     ]; // this is our initial todoList
+    if (localStorage.getItem("state")&&localStorage.getItem("state")!=='undefined'){
+        var state = JSON.parse(localStorage.getItem("state"))
+    }
+    else{
+        var state = [];
+    }
 
-    //localStorage.setItem("state", JSON.stringify(state));
+
+
+    console.log(localStorage.getItem("state"));
+
+    // var state = [
+    //     { id: -3, description: 'first todo', done:false },
+    //     { id: -2, description: 'second todo', done:false },
+    //     { id: -1, description: 'third todo', done:false },
+    // ]; // this is our initial todoList
+
+    localStorage.setItem("state", JSON.stringify(state));
 
 
 //...
@@ -51,7 +61,7 @@
             update(newState);
         });
         todoNode.addEventListener('click',function(e){
-           console.log(todo.id);
+            console.log(todo.id);
 
         });
 
@@ -61,9 +71,9 @@
 
 
         complete.addEventListener('click', function(event) {
-          var newState = todoFunctions.markTodo(state, todo.id);
-          update(newState);
-          ;
+            var newState = todoFunctions.markTodo(state, todo.id);
+            update(newState);
+            ;
         });
         buttons.appendChild(deleteButtonNode);
         buttons.appendChild(complete);
@@ -137,7 +147,7 @@
         // you may want to add a class for css
         completedContainer.replaceChild(CompleteTodoListNode, completedContainer.firstChild);
         localStorage.setItem("state", JSON.stringify(state));
-        console.log(JSON.parse(localStorage.getItem("state")))
+        //console.log(JSON.parse(localStorage.getItem("state")))
     };
 
     if ((container)||(completedContainer)){
