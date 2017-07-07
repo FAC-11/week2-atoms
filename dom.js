@@ -45,7 +45,7 @@
         var deleteButtonNode = document.createElement('button');
         deleteButtonNode.classList.add("remove");
         deleteButtonNode.innerHTML = removeSVG;
-
+    
         deleteButtonNode.addEventListener('click', function(event) {
             var newState = todoFunctions.deleteTodo(state, todo.id);
             update(newState);
