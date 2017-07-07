@@ -3,10 +3,10 @@
 
 ### Organisation
 
-**1. TDD**
-**2.  Pure Functions **
-**3. Modifying the DOM**
-**4. Styling the todo App**
+1. **TDD**
+2.  **Pure Functions **
+3. **Modifying the DOM**
+4. **Styling the todo App**
 
 ### TDD
 
