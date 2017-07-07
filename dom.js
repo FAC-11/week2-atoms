@@ -13,15 +13,15 @@
 
     var completedContainer = document.getElementById('completed-container');
     //var addTodoForm = document.getElementById('add');
-    var state = JSON.parse(localStorage.getItem("state"));
+    //var state = JSON.parse(localStorage.getItem("state"));
 
-    // var state = [
-    //     { id: -3, description: 'first todo', done:false },
-    //     { id: -2, description: 'second todo', done:false },
-    //     { id: -1, description: 'third todo', done:false },
-    // ]; // this is our initial todoList
+    var state = [
+        { id: -3, description: 'first todo', done:false },
+         { id: -2, description: 'second todo', done:false },
+         { id: -1, description: 'third todo', done:false },
+     ]; // this is our initial todoList
 
-    localStorage.setItem("state", JSON.stringify(state));
+    //localStorage.setItem("state", JSON.stringify(state));
 
 
 //...
