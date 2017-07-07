@@ -291,3 +291,9 @@ div #completed-container ul:after {
     font-size: 12px;
     color: #aaa;
 }
+
+@media screen and (max-width: 350px) {
+    h1{
+        font-size: 16px;
+    }
+}
