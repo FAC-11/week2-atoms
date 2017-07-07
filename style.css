@@ -56,7 +56,6 @@ header{
     border-radius: 5px;
     border:0px;
     box-shadow: none;
-    outline:none;
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
     -webkit-appearance: none;
@@ -94,7 +93,6 @@ header input:-ms-input-placeholder {
     background: #fff;
     border: 0px;
     box-shadow: none;
-    outline: none;
     cursor: pointer;
 
     -webkit-appearance: none;
@@ -171,7 +169,6 @@ ul li .buttons button {
     position: relative;
     border: 0px;
     box-shadow: none;
-    outline: none;
     cursor: pointer;
 
 
@@ -187,7 +184,6 @@ ul li .buttons button {
     position: relative;
     border: 0px;
     box-shadow: none;
-    outline: none;
     cursor: pointer;
 
     -webkit-appearance: none;
