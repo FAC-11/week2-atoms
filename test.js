@@ -5,7 +5,7 @@ var logic = require('./logic.js');
 test('deleteTodo should return an array', function(t) {
   var actual = Array.isArray(logic.deleteTodo([], 1));
   var expected = true;
-  t.deepEqual(actual, expected, 'should return an array');
+  t.equal(actual, expected, 'should return an array');
   t.end();
 });
 
