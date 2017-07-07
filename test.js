@@ -2,7 +2,7 @@ var test = require('tape');
 var logic = require('./logic.js');
 
 /**** TESTS FOR DELETETODO ****/
-test('deleteTodo should return an array', function(t) {
+test('delete to do', function(t) {
   var actual = Array.isArray(logic.deleteTodo([], 1));
   var expected = true;
   t.deepEqual(actual, expected, 'should return an array');
@@ -10,18 +10,18 @@ test('deleteTodo should return an array', function(t) {
 });
 
 // should work for 1 item
-test('should work for 1 item', function(t) {
+test('delete to do', function(t) {
   var actual = logic.deleteTodo([{
     id: 1,
     description: "go for run",
     done: false
   }], 1);
   var expected = [];
-  t.deepEqual(actual, expected, 'should work for 1 item');
+  t.deepEqual(actual, expected, 'should return empty array when array has 1 item');
   t.end();
 });
 // should work for 1 item when idToDelete input argument doesn't match
-test("should work for 1 item when idToDelete input argument doesn't match", function(t) {
+test("delete to do", function(t) {
   var actual = logic.deleteTodo([{
     id: 1,
     description: "go for run",
@@ -32,12 +32,11 @@ test("should work for 1 item when idToDelete input argument doesn't match", func
     description: "go for run",
     done: false
   }]
-  t.deepEqual(actual, expected, "should work for 1 item when idToDelete input argument doesn't match");
+  t.deepEqual(actual, expected, "should return an array with 1 object when the idToDelete argument is not found");
   t.end();
 });
 
-// Should return a new array with all the items that don't match the idToDelete input argument
-test("Should return a new array with all the items that don't match the idToDelete input argument", function(t) {
+test("delete to do", function(t) {
   var actual = logic.deleteTodo([{
     id: 1,
     description: "go for run",
@@ -57,19 +56,19 @@ test("Should return a new array with all the items that don't match the idToDele
 });
 
 // Should return an empty array if all items match the input argument idToDelete
-test("Should return an empty array if all items match the imput argument idToDelete", function(t) {
+test("delete to do", function(t) {
   var actual = logic.deleteTodo([{
     id: 1,
     description: "go for run",
     done: false
   }, ], 1);
   var expected = [];
-  t.deepEqual(actual, expected, 'Should return an empty array if all items match the imput argument idToDelete');
+  t.deepEqual(actual, expected, 'Should return an empty array if all items match the input argument idToDelete');
   t.end();
 });
 
 // should leave the input argument array todos unchanged
-test('should leave the input argument array todos unchanged', function(t) {
+test('delete to do', function(t) {
   var todoarray = [{
     id: 1,
     description: "go for run",
@@ -96,7 +95,6 @@ test('should leave the input argument array todos unchanged', function(t) {
   t.end();
 });
 
-
 /**** TESTS FOR ADDTODO ****/
 // test('logic.addTodo should add a todo to the list', function(t) {
 //   var todos = [{
@@ -106,34 +104,8 @@ test('should leave the input argument array todos unchanged', function(t) {
 //     description: 'make eggs'
 //   };
 
-// should leave the input argument todos unchanged
-test('should leave the input argument todos unchanged', function(t) {
-  var todoarray = [{
-    id: 1,
-    description: "go for run",
-    done: false
-  }, {
-    id: 4,
-    description: "drink water",
-    done: false
-  }];
-  logic.deleteTodo(todoarray, 4);
-  var actual = todoarray;
-  var expected = [{
-    id: 1,
-    description: "go for run",
-    done: false
-  }, {
-    id: 4,
-    description: "drink water",
-    done: false
-  }];
-  t.deepEqual(actual, expected, 'should leave the input argument todos unchanged');
-  t.end();
-});
-
 // Should return an array with the input argument todo added to the list
-test("Should return an array with the input argument todo added to the list", function(t) {
+test("add to do", function(t) {
   var todos = [{
     description: 'make tea'
   }];
@@ -169,8 +141,7 @@ test("Should return an array with the input argument todo added to the list", fu
   t.end();
 });
 
-test('logic.markTodo should toggle the done property on the todo with' +
-  'the given id',
+test('mark to do',
   function(t) {
 
     var todos = [{
@@ -226,7 +197,7 @@ test('logic.markTodo should toggle the done property on the todo with' +
 /**** TESTS FOR SORTTODO ****/
 
 //Should return an array
-test("should return an array", function(t) {
+test("sort to do", function(t) {
   var todos = [{
       id: 1,
       description: 'make eggs',
@@ -247,7 +218,7 @@ test("should return an array", function(t) {
 });
 
 //Should return an array with the correct items
-test("should return a new array of only items with done property set as true", function(t) {
+test("sort to do", function(t) {
   var todos = [{
       id: 1,
       description: 'make eggs',
@@ -273,7 +244,7 @@ test("should return a new array of only items with done property set as true", f
 });
 
 //should not change input arguments
-test('input argument should remain unchanged', function(t) {
+test('sort to do', function(t) {
   var todos = [{
       id: 1,
       description: 'make eggs',
@@ -307,7 +278,7 @@ test('input argument should remain unchanged', function(t) {
 });
 
 //Should return an empty array when none of the items match the input argument
-test("should return an empty array if there are no items that match the input argument", function(t) {
+test("sort to do", function(t) {
   var todos = [{
       id: 1,
       description: 'make eggs',
@@ -331,9 +302,7 @@ test("should return an empty array if there are no items that match the input ar
 
 // Edit tests from Rebecca
 
-test('logic.toggleEditing should toggle the beingEdited property on the todo' +
-    ' with the given id and set the beingEdited property on all on others todos' +
-    'to false',
+test('toggle editing',
     function(t) {
 
         var todos = [{
@@ -411,7 +380,7 @@ test('logic.toggleEditing should toggle the beingEdited property on the todo' +
         t.end();
     })
 //test for editTask function
-test('logic.editTodo should set the description for the todo with the given id',
+test('edit to do',
     function(t) {
 
         var todos = [{
